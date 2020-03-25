@@ -20,7 +20,8 @@ setup_kwargs = {
     "author_email"         : "dev@erickshepherd.com",
     "maintainer"           : __author__,
     "maintainer_email"     : "dev@erickshepherd.com",
-    "url"                  : "https://darktarget.gsfc.nasa.gov/",
+    "url"                  : ("https://github.com/ErickShepherd/"
+                              "noaa_esrl_gmd_file_reader"),
     "download_url"         : "",
     "packages"             : setuptools.find_packages(),
     "license"              : "AGPLv3"
