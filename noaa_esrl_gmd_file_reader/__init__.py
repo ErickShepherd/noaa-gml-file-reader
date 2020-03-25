@@ -51,7 +51,6 @@ Changelog:
 # Standard library imports.
 import os
 import re
-import sys
 
 # Third party imports.
 import pandas as pd
@@ -144,13 +143,4 @@ def read_data(path : str) -> pd.DataFrame:
     else:
         
         return None
-    
-    
-if __name__ == "__main__":
-    
-    # Accepts the file path as a command-line argument and reads the file.
-    path = os.path.abspath(sys.argv[1])
-    data = read_esrl_gmd_data(path)
-    
-    print(data)
     
