@@ -9,7 +9,7 @@ E-mail:         dev@erickshepherd.com
 GitHub:         github.com/ErickShepherd
 Version:        1.0.1
 Date created:   2020-03-25
-Last modified:  2020-03-25
+Last modified:  2020-03-29
 
 
 Description:
@@ -45,6 +45,12 @@ Changelog:
     2020-03-25 - Version 1.0.1:
         
         Initial build developed and released.
+        
+    2020-03-29 - Version 1.0.2:
+    
+        Changed the return type of the "read_data" function in the event of a
+        failed attempt to read the file from a None object to an empty
+        pandas.DataFrame.
 
 '''
 
@@ -58,7 +64,7 @@ import pandas as pd
 # Dunder definitions.
 #  - Versioning system: {major_version}.{minor_version}.{build_number}
 __author__  = "Erick Edward Shepherd"
-__version__ = "1.0.1"
+__version__ = "1.0.2"
 
 # Constant definitions.
 _DATA_DELIMITER_REGEX = r"\s+"
@@ -142,5 +148,5 @@ def read_data(path : str) -> pd.DataFrame:
     
     else:
         
-        return None
+        return pd.DataFrame()
     

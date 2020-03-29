@@ -8,7 +8,7 @@ import setuptools
 # Module dunder definitions.
 #  - Versioning system: {major_version}.{minor_version}.{build_number}
 __author__  = "Erick Edward Shepherd"
-__version__ = "1.0.1"
+__version__ = "1.0.2"
 
 setup_kwargs = {
     "name"                 : "noaa_esrl_gmd_file_reader",
