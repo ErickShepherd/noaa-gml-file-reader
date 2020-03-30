@@ -42,11 +42,11 @@ License:
     
 Changelog:
     
-    2020-03-25 - Version 1.0.1:
+    2020-03-25 - Version 1.0.0:
         
         Initial build developed and released.
         
-    2020-03-29 - Version 1.0.2:
+    2020-03-29 - Version 1.0.1:
     
         Changed the return type of the "read_data" function in the event of a
         failed attempt to read the file from a None object to an empty
@@ -62,9 +62,9 @@ import re
 import pandas as pd
 
 # Dunder definitions.
-#  - Versioning system: {major_version}.{minor_version}.{build_number}
+#  - Versioning system: {major_version}.{minor_version}.{patch}
 __author__  = "Erick Edward Shepherd"
-__version__ = "1.0.2"
+__version__ = "1.0.1"
 
 # Constant definitions.
 _DATA_DELIMITER_REGEX = r"\s+"
