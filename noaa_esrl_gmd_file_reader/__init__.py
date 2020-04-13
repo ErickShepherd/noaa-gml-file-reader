@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 
 '''
 
@@ -7,7 +8,7 @@ A package for reading NOAA ESRL GMD ASCII data files.
 Author:         Erick Edward Shepherd
 E-mail:         dev@erickshepherd.com
 GitHub:         github.com/ErickShepherd
-Version:        1.0.1
+Version:        1.0.2
 Date created:   2020-03-25
 Last modified:  2020-03-29
 
@@ -51,11 +52,15 @@ Changelog:
         Changed the return type of the "read_data" function in the event of a
         failed attempt to read the file from a None object to an empty
         pandas.DataFrame.
+        
+    2020-04-13 - Version 1.0.2:
+        
+        Linted the module: removed unused imports, added an encoding
+        declaration, and removed trailing whitespace.
 
 '''
 
 # Standard library imports.
-import os
 import re
 
 # Third party imports.
@@ -64,7 +69,7 @@ import pandas as pd
 # Dunder definitions.
 #  - Versioning system: {major_version}.{minor_version}.{patch}
 __author__  = "Erick Edward Shepherd"
-__version__ = "1.0.1"
+__version__ = "1.0.2"
 
 # Constant definitions.
 _DATA_DELIMITER_REGEX = r"\s+"
@@ -136,7 +141,7 @@ def read_data(path : str) -> pd.DataFrame:
         header_lines = int(header_lines)
         data_fields  = re.split(_DATA_DELIMITER_REGEX, data_fields)
         
-        # Reads the file as a CSV with a regular expression delimiter and the 
+        # Reads the file as a CSV with a regular expression delimiter and the
         # data fields as the column names after skipping the given number of
         # header lines.
         data = pd.read_csv(path,
@@ -149,4 +154,3 @@ def read_data(path : str) -> pd.DataFrame:
     else:
         
         return pd.DataFrame()
-    
