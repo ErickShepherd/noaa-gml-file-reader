@@ -14,7 +14,7 @@ name: Publish to PyPI
 
 on:
   release:
-    types: [published]
+    types: [released]  # full releases only — pre-releases never auto-publish
   workflow_dispatch:
     inputs:
       target:
@@ -61,6 +61,7 @@ jobs:
       - uses: pypa/gh-action-pypi-publish@release/v1
         with:
           repository-url: https://test.pypi.org/legacy/
+          skip-existing: true  # re-dispatching a dry run for an existing version won't fail
 
   publish-pypi:
     name: Publish to PyPI
