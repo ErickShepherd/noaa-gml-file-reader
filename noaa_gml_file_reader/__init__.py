@@ -5,7 +5,7 @@ Public API: :func:`read_data`. The parsing implementation lives in
 """
 
 # Local imports.
-from noaa_gml_file_reader._reader import read_data
+from noaa_gml_file_reader._reader import read_data, UnrecognizedFormatError
 
 # Dunder definitions.
 #  - Versioning system: {major_version}.{minor_version}.{patch}
@@ -13,4 +13,4 @@ from noaa_gml_file_reader._reader import read_data
 __author__  = "Erick Edward Shepherd"
 __version__ = "1.0.2"
 
-__all__ = ["read_data", "__version__"]
+__all__ = ["read_data", "UnrecognizedFormatError", "__version__"]

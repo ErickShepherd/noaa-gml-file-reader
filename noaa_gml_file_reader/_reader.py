@@ -14,6 +14,27 @@ import pandas as pd
 # The data section is whitespace-delimited (variable-width columns).
 _DATA_DELIMITER = r"\s+"
 
+# Documented missing-value sentinels (docs/format-notes.md), mapped to NaN so
+# numeric columns parse numeric instead of being dragged to object/float fill.
+_NA_VALUES = ["-999.99", "-999.999", "nan"]
+
+
+class UnrecognizedFormatError(Exception):
+    """Raised when a file's header matches no known NOAA GML dialect.
+
+    Carries the offending ``path`` and the file's ``first_header_line`` so the
+    failure is explicit and diagnosable (replacing v1's silent empty DataFrame).
+    """
+
+    def __init__(self, path, first_header_line):
+        self.path = path
+        self.first_header_line = first_header_line
+        super().__init__(
+            f"Unrecognized NOAA GML file format: {path!r} — no "
+            f"'number_of_header_lines'/'header_lines' header key found or the "
+            f"header is truncated (first line: {first_header_line!r})."
+        )
+
 # Header-length keys, one per dialect. ``\s*`` around the colon tolerates the
 # observed spacing variants ("number_of_header_lines: N" vs "header_lines : N").
 # The legacy key is tried first: "header_lines" is a substring of
@@ -54,7 +75,10 @@ def _column_names(lines, dialect, header_count):
             if match:
                 return match.group("fields").split()
         return None
-    # Current dialect: names are the last header line.
+    # Current dialect: names are the last header line. A truncated file whose
+    # declared header extends past EOF has no column row -> unrecognized.
+    if header_count < 1 or header_count > len(lines):
+        return None
     return lines[header_count - 1].split()
 
 
@@ -75,24 +99,27 @@ def read_data(path : str) -> pd.DataFrame:
     with open(path) as file:
         lines = file.readlines()
 
+    first_header_line = lines[0].rstrip("\n") if lines else ""
+
     dialect, header_count = _detect_header(lines)
 
-    # Unrecognized header dialect. (Phase 3 item 9 replaces this silent-empty
-    # fallback with a raised UnrecognizedFormatError.)
+    # No recognized header key: fail loudly instead of returning an empty frame.
     if dialect is None:
-        return pd.DataFrame()
+        raise UnrecognizedFormatError(path, first_header_line)
 
     names = _column_names(lines, dialect, header_count)
     if names is None:
-        return pd.DataFrame()
+        raise UnrecognizedFormatError(path, first_header_line)
 
     # One generic read for both dialects: skip the N header lines and apply the
     # per-dialect column names. engine="python" is required for the regex
-    # separator under pandas >= 2.
+    # separator under pandas >= 2; na_values maps the documented sentinels to
+    # NaN so numeric columns parse numeric.
     return pd.read_csv(
         path,
-        sep      = _DATA_DELIMITER,
-        engine   = "python",
-        names    = names,
-        skiprows = header_count,
+        sep       = _DATA_DELIMITER,
+        engine    = "python",
+        names     = names,
+        skiprows  = header_count,
+        na_values = _NA_VALUES,
     )
