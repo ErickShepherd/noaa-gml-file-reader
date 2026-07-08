@@ -1,6 +1,6 @@
 # noaa-gml-file-reader
 
-[![CI](https://github.com/ErickShepherd/noaa_esrl_gmd_file_reader/actions/workflows/ci.yml/badge.svg)](https://github.com/ErickShepherd/noaa_esrl_gmd_file_reader/actions/workflows/ci.yml)
+[![CI](https://github.com/ErickShepherd/noaa-gml-file-reader/actions/workflows/ci.yml/badge.svg)](https://github.com/ErickShepherd/noaa-gml-file-reader/actions/workflows/ci.yml)
 ![Python](https://img.shields.io/badge/python-3.10%2B-blue)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
@@ -31,7 +31,7 @@ pip install noaa-gml-file-reader
 ```
 
 Requires Python ≥ 3.10 and pandas ≥ 2.0. (Not yet on PyPI — install from source:
-`pip install git+https://github.com/ErickShepherd/noaa_esrl_gmd_file_reader`.)
+`pip install git+https://github.com/ErickShepherd/noaa-gml-file-reader`.)
 
 ## Usage
 

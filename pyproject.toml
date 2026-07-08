@@ -29,7 +29,7 @@ classifiers = [
 test = ["pytest"]
 
 [project.urls]
-Homepage = "https://github.com/ErickShepherd/noaa_esrl_gmd_file_reader"
+Homepage = "https://github.com/ErickShepherd/noaa-gml-file-reader"
 
 [tool.hatch.version]
 path = "noaa_gml_file_reader/__init__.py"
