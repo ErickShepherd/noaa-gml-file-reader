@@ -25,6 +25,9 @@ classifiers = [
     "Topic :: Scientific/Engineering :: Atmospheric Science",
 ]
 
+[project.optional-dependencies]
+test = ["pytest"]
+
 [project.urls]
 Homepage = "https://github.com/ErickShepherd/noaa_esrl_gmd_file_reader"
 
@@ -33,3 +36,6 @@ path = "noaa_gml_file_reader/__init__.py"
 
 [tool.hatch.build.targets.wheel]
 packages = ["noaa_gml_file_reader"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
