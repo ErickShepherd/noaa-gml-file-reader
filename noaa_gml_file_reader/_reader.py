@@ -1,8 +1,8 @@
 """Internal parsing implementation for noaa-gml-file-reader.
 
-This module holds the parsing logic; the public API is re-exported from the
-package's ``__init__``. (Phase 2 move only — the parser body is unchanged from
-v1 here; the v2 dialect-aware rewrite lands in Phase 3.)
+Parses NOAA GML trace-gas ASCII files into pandas DataFrames, auto-detecting the
+header dialect (legacy ``# number_of_header_lines:`` vs current
+``# header_lines :``). See ``docs/format-notes.md`` for the observed grammars.
 """
 
 # Standard library imports.
@@ -11,10 +11,51 @@ import re
 # Third party imports.
 import pandas as pd
 
-# Constant definitions.
-_DATA_DELIMITER_REGEX = r"\s+"
-_HEADER_LINES_REGEX   = r"# number_of_header_lines: (?P<header_lines>\d+)"
-_DATA_FIELDS_REGEX    = r"# data_fields: (?P<data_fields>.+)"
+# The data section is whitespace-delimited (variable-width columns).
+_DATA_DELIMITER = r"\s+"
+
+# Header-length keys, one per dialect. ``\s*`` around the colon tolerates the
+# observed spacing variants ("number_of_header_lines: N" vs "header_lines : N").
+# The legacy key is tried first: "header_lines" is a substring of
+# "number_of_header_lines", so a legacy line must not fall through to the
+# current pattern.
+_LEGACY_HEADER_RE  = re.compile(r"^#\s*number_of_header_lines\s*:\s*(?P<n>\d+)")
+_CURRENT_HEADER_RE = re.compile(r"^#\s*header_lines\s*:\s*(?P<n>\d+)")
+
+# The legacy dialect conveys column names via a "# data_fields:" header line.
+_DATA_FIELDS_RE = re.compile(r"^#\s*data_fields\s*:\s*(?P<fields>.+)")
+
+
+def _detect_header(lines):
+    """Return ``(dialect, header_count)`` from the header, or ``(None, None)``.
+
+    ``dialect`` is ``"legacy"`` or ``"current"``; ``header_count`` is the number
+    of leading header lines (the data section begins on the next line).
+    """
+    for line in lines:
+        match = _LEGACY_HEADER_RE.match(line)
+        if match:
+            return "legacy", int(match.group("n"))
+        match = _CURRENT_HEADER_RE.match(line)
+        if match:
+            return "current", int(match.group("n"))
+    return None, None
+
+
+def _column_names(lines, dialect, header_count):
+    """Extract the column names per dialect, or ``None`` if absent.
+
+    Legacy: the ``# data_fields:`` header line. Current: the bare (non-``#``)
+    column row that is the last header line (line ``header_count``, 1-indexed).
+    """
+    if dialect == "legacy":
+        for line in lines[:header_count]:
+            match = _DATA_FIELDS_RE.match(line)
+            if match:
+                return match.group("fields").split()
+        return None
+    # Current dialect: names are the last header line.
+    return lines[header_count - 1].split()
 
 
 def read_data(path : str) -> pd.DataFrame:
@@ -31,66 +72,27 @@ def read_data(path : str) -> pd.DataFrame:
 
     '''
 
-    # Opens the file.
     with open(path) as file:
+        lines = file.readlines()
 
-        # Defines variables to store the values extracted from the regular
-        # expression groups.
-        header_lines, data_fields = None, None
+    dialect, header_count = _detect_header(lines)
 
-        # Iterates through the file.
-        for line in file:
-
-            # Checks whether the line matches the header lines regular
-            # expression provided that a match has not already occurred.
-            if not header_lines:
-
-                header_lines_match = re.match(_HEADER_LINES_REGEX, line)
-
-                # If the regular expression yields a match, extract the number
-                # of header lines from the string.
-                if header_lines_match:
-
-                    header_lines = header_lines_match.groupdict()
-                    header_lines = header_lines["header_lines"]
-
-            # Checks whether the line matches the data fields regular
-            # expression provided that a match has not already occurred.
-            if not data_fields:
-
-                data_fields_match = re.match(_DATA_FIELDS_REGEX, line)
-
-                # If the regular expression yields a match, extract the data
-                # fields from the string.
-                if data_fields_match:
-
-                    data_fields = data_fields_match.groupdict()
-                    data_fields = data_fields["data_fields"]
-
-            if bool(header_lines and data_fields):
-
-                break
-
-    # Checks whether the regular expressions were matched. If so, this reads
-    # the file as a CSV and returns a pandas.DataFrame. Otherwise, it returns
-    # an empty DataFrame.
-    if bool(header_lines and data_fields):
-
-        # Casts the header lines as an integer and splits the data fields
-        # into a list.
-        header_lines = int(header_lines)
-        data_fields  = re.split(_DATA_DELIMITER_REGEX, data_fields)
-
-        # Reads the file as a CSV with a regular expression delimiter and the
-        # data fields as the column names after skipping the given number of
-        # header lines.
-        data = pd.read_csv(path,
-                           delimiter = _DATA_DELIMITER_REGEX,
-                           names     = data_fields,
-                           skiprows  = header_lines)
-
-        return data
-
-    else:
-
+    # Unrecognized header dialect. (Phase 3 item 9 replaces this silent-empty
+    # fallback with a raised UnrecognizedFormatError.)
+    if dialect is None:
         return pd.DataFrame()
+
+    names = _column_names(lines, dialect, header_count)
+    if names is None:
+        return pd.DataFrame()
+
+    # One generic read for both dialects: skip the N header lines and apply the
+    # per-dialect column names. engine="python" is required for the regex
+    # separator under pandas >= 2.
+    return pd.read_csv(
+        path,
+        sep      = _DATA_DELIMITER,
+        engine   = "python",
+        names    = names,
+        skiprows = header_count,
+    )
