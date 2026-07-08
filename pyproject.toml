@@ -1,0 +1,35 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "noaa-gml-file-reader"
+dynamic = ["version"]
+description = "Read NOAA GML atmospheric trace-gas ASCII data files as pandas DataFrames."
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = ["pandas >= 2.0"]
+authors = [{ name = "Erick Edward Shepherd", email = "dev@erickshepherd.com" }]
+maintainers = [{ name = "Erick Edward Shepherd", email = "dev@erickshepherd.com" }]
+keywords = ["NOAA", "GML", "GMD", "atmospheric", "trace gases", "CO2", "CH4", "pandas"]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Science/Research",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Scientific/Engineering :: Atmospheric Science",
+]
+# NOTE: license (MIT) is declared in item 7, alongside the LICENSE-file swap, to
+# keep each commit internally consistent (LICENSE is still AGPL until then).
+
+[project.urls]
+Homepage = "https://github.com/ErickShepherd/noaa_esrl_gmd_file_reader"
+
+[tool.hatch.version]
+path = "noaa_gml_file_reader/__init__.py"
+
+[tool.hatch.build.targets.wheel]
+packages = ["noaa_gml_file_reader"]
