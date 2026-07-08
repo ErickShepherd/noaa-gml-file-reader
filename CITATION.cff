@@ -10,8 +10,8 @@ authors:
 version: "2.0.0"
 date-released: "2026-07-08"
 license: MIT
-repository-code: "https://github.com/ErickShepherd/noaa_esrl_gmd_file_reader"
-url: "https://github.com/ErickShepherd/noaa_esrl_gmd_file_reader"
+repository-code: "https://github.com/ErickShepherd/noaa-gml-file-reader"
+url: "https://github.com/ErickShepherd/noaa-gml-file-reader"
 keywords:
   - NOAA
   - GML

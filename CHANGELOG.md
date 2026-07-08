@@ -56,7 +56,7 @@ input now raises instead of returning an empty DataFrame.
 ### Added
 - Initial build developed and released.
 
-[2.0.0]: https://github.com/ErickShepherd/noaa_esrl_gmd_file_reader/releases/tag/v2.0.0
-[1.0.2]: https://github.com/ErickShepherd/noaa_esrl_gmd_file_reader/releases/tag/v1.0.2
-[1.0.1]: https://github.com/ErickShepherd/noaa_esrl_gmd_file_reader/releases/tag/v1.0.1
-[1.0.0]: https://github.com/ErickShepherd/noaa_esrl_gmd_file_reader/releases/tag/v1.0.0
+[2.0.0]: https://github.com/ErickShepherd/noaa-gml-file-reader/releases/tag/v2.0.0
+[1.0.2]: https://github.com/ErickShepherd/noaa-gml-file-reader/releases/tag/v1.0.2
+[1.0.1]: https://github.com/ErickShepherd/noaa-gml-file-reader/releases/tag/v1.0.1
+[1.0.0]: https://github.com/ErickShepherd/noaa-gml-file-reader/releases/tag/v1.0.0
