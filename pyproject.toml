@@ -39,3 +39,8 @@ packages = ["noaa_gml_file_reader"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+
+[tool.ruff]
+# Permissive: keep ruff's default rule set (pyflakes F + a pycodestyle subset);
+# don't churn style beyond what ruff flags. target-version matches requires-python.
+target-version = "py310"
