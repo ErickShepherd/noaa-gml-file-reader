@@ -9,6 +9,8 @@ description = "Read NOAA GML atmospheric trace-gas ASCII data files as pandas Da
 readme = "README.md"
 requires-python = ">=3.10"
 dependencies = ["pandas >= 2.0"]
+license = "MIT"
+license-files = ["LICENSE"]
 authors = [{ name = "Erick Edward Shepherd", email = "dev@erickshepherd.com" }]
 maintainers = [{ name = "Erick Edward Shepherd", email = "dev@erickshepherd.com" }]
 keywords = ["NOAA", "GML", "GMD", "atmospheric", "trace gases", "CO2", "CH4", "pandas"]
@@ -22,8 +24,6 @@ classifiers = [
     "Programming Language :: Python :: 3.13",
     "Topic :: Scientific/Engineering :: Atmospheric Science",
 ]
-# NOTE: license (MIT) is declared in item 7, alongside the LICENSE-file swap, to
-# keep each commit internally consistent (LICENSE is still AGPL until then).
 
 [project.urls]
 Homepage = "https://github.com/ErickShepherd/noaa_esrl_gmd_file_reader"
