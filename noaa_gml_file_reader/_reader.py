@@ -26,7 +26,7 @@ class UnrecognizedFormatError(Exception):
     failure is explicit and diagnosable (replacing v1's silent empty DataFrame).
     """
 
-    def __init__(self, path, first_header_line):
+    def __init__(self, path: str, first_header_line: str) -> None:
         self.path = path
         self.first_header_line = first_header_line
         super().__init__(
@@ -34,6 +34,7 @@ class UnrecognizedFormatError(Exception):
             f"'number_of_header_lines'/'header_lines' header key found or the "
             f"header is truncated (first line: {first_header_line!r})."
         )
+
 
 # Header-length keys, one per dialect. ``\s*`` around the colon tolerates the
 # observed spacing variants ("number_of_header_lines: N" vs "header_lines : N").
@@ -47,7 +48,7 @@ _CURRENT_HEADER_RE = re.compile(r"^#\s*header_lines\s*:\s*(?P<n>\d+)")
 _DATA_FIELDS_RE = re.compile(r"^#\s*data_fields\s*:\s*(?P<fields>.+)")
 
 
-def _detect_header(lines):
+def _detect_header(lines: list[str]) -> tuple[str | None, int | None]:
     """Return ``(dialect, header_count)`` from the header, or ``(None, None)``.
 
     ``dialect`` is ``"legacy"`` or ``"current"``; ``header_count`` is the number
@@ -63,7 +64,9 @@ def _detect_header(lines):
     return None, None
 
 
-def _column_names(lines, dialect, header_count):
+def _column_names(
+    lines: list[str], dialect: str, header_count: int
+) -> list[str] | None:
     """Extract the column names per dialect, or ``None`` if absent.
 
     Legacy: the ``# data_fields:`` header line. Current: the bare (non-``#``)
@@ -82,17 +85,27 @@ def _column_names(lines, dialect, header_count):
     return lines[header_count - 1].split()
 
 
-def read_data(path : str) -> pd.DataFrame:
+def read_data(path: str) -> pd.DataFrame:
 
     '''
 
-    Given the file path, this function parses an ASCII ESRL GMD data file.
+    Read a NOAA GML trace-gas ASCII file into a ``pandas.DataFrame``.
+
+    The header dialect is auto-detected and both are supported: the legacy
+    ``# number_of_header_lines:`` form (column names from ``# data_fields:``)
+    and the current ``# header_lines :`` form (column names from the bare
+    column row that is the last header line). Documented missing-value
+    sentinels (``-999.99``, ``-999.999``, ``nan``) are mapped to ``NaN`` so
+    numeric columns parse numeric.
 
     :param path: The path to the data file.
     :type path:  str
 
-    :return:     The parsed file data.
+    :return:     The parsed file data, one column per header field.
     :rtype:      pandas.DataFrame
+
+    :raises UnrecognizedFormatError: If no known header dialect is detected or
+        the header is truncated. (In v1 this was a silent empty DataFrame.)
 
     '''
 
