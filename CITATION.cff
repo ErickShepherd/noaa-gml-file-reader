@@ -7,8 +7,8 @@ authors:
   - family-names: "Shepherd"
     given-names: "Erick Edward"
     email: "dev@erickshepherd.com"
-version: "2.0.0"
-date-released: "2026-07-08"
+version: "2.0.1"
+date-released: "2026-07-09"
 license: MIT
 repository-code: "https://github.com/ErickShepherd/noaa-gml-file-reader"
 url: "https://github.com/ErickShepherd/noaa-gml-file-reader"
