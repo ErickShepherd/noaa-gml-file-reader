@@ -4,6 +4,20 @@ All notable changes to this project are documented here. The format is based on
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project
 adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.0.1] — 2026-07-09
+
+Docs/packaging only — no code changes.
+
+### Changed
+- Added a "Problems this solves" section to the README, mapping common
+  natural-language queries (reading NOAA GML CO₂/CH₄ files, loading Mauna Loa
+  flask data into pandas) to `read_data`.
+- Corrected the install note — the package is published on PyPI
+  (`pip install noaa-gml-file-reader`) — and narrowed the in-situ dialect table's
+  empirical "seen in" column to the surveyed `(hourly)` product.
+- Enriched packaging metadata: expanded keywords and added `Source` and
+  `Bug Tracker` project URLs.
+
 ## [2.0.0] — 2026-07-08
 
 Modernization release. **Breaking** — the package is renamed and unparseable
@@ -56,6 +70,7 @@ input now raises instead of returning an empty DataFrame.
 ### Added
 - Initial build developed and released.
 
+[2.0.1]: https://github.com/ErickShepherd/noaa-gml-file-reader/releases/tag/v2.0.1
 [2.0.0]: https://github.com/ErickShepherd/noaa-gml-file-reader/releases/tag/v2.0.0
 [1.0.2]: https://github.com/ErickShepherd/noaa-gml-file-reader/releases/tag/v1.0.2
 [1.0.1]: https://github.com/ErickShepherd/noaa-gml-file-reader/releases/tag/v1.0.1
