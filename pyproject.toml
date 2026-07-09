@@ -13,7 +13,11 @@ license = "MIT"
 license-files = ["LICENSE"]
 authors = [{ name = "Erick Edward Shepherd", email = "dev@erickshepherd.com" }]
 maintainers = [{ name = "Erick Edward Shepherd", email = "dev@erickshepherd.com" }]
-keywords = ["NOAA", "GML", "GMD", "atmospheric", "trace gases", "CO2", "CH4", "pandas"]
+keywords = [
+    "NOAA", "GML", "GMD", "ESRL", "atmospheric", "trace gases",
+    "greenhouse gases", "CO2", "carbon dioxide", "CH4", "methane",
+    "Mauna Loa", "flask", "climate", "geoscience", "pandas",
+]
 classifiers = [
     "Development Status :: 5 - Production/Stable",
     "Intended Audience :: Science/Research",
@@ -30,6 +34,8 @@ test = ["pytest"]
 
 [project.urls]
 Homepage = "https://github.com/ErickShepherd/noaa-gml-file-reader"
+Source = "https://github.com/ErickShepherd/noaa-gml-file-reader"
+"Bug Tracker" = "https://github.com/ErickShepherd/noaa-gml-file-reader/issues"
 
 [tool.hatch.version]
 path = "noaa_gml_file_reader/__init__.py"

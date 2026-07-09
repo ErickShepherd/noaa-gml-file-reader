@@ -8,6 +8,19 @@ Read [NOAA GML](https://gml.noaa.gov) atmospheric trace-gas ASCII data files as
 [`pandas.DataFrame`](https://pandas.pydata.org/) objects — one function,
 `read_data(path)`.
 
+## Problems this solves
+
+Reach for this if you are trying to:
+
+- **Read NOAA GML (ESRL/GMD) CO₂ or CH₄ data files in Python** without writing a
+  bespoke header parser.
+- **Load Mauna Loa (or any station's) CO₂ data into a pandas DataFrame** —
+  surface-flask (event, monthly) or in-situ hourly `ccgg` files.
+- **Parse NOAA greenhouse-gas ASCII (`.txt`) files** whose `#`-commented headers
+  and `-999.99` missing-value sentinels trip up `pandas.read_csv`.
+- **Handle both the pre-2020 (GMD) and current (GML) header formats** without
+  knowing which dialect a given file uses — the reader auto-detects.
+
 ## What this reads
 
 NOAA's Global Monitoring Laboratory (GML) publishes long-term atmospheric
@@ -30,8 +43,7 @@ column names and the documented missing-value sentinels handled for you.
 pip install noaa-gml-file-reader
 ```
 
-Requires Python ≥ 3.10 and pandas ≥ 2.0. (Not yet on PyPI — install from source:
-`pip install git+https://github.com/ErickShepherd/noaa-gml-file-reader`.)
+Requires Python ≥ 3.10 and pandas ≥ 2.0.
 
 ## Usage
 
