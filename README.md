@@ -76,7 +76,7 @@ format history to read a file:
 
 | dialect | header key | column names from | seen in |
 | --- | --- | --- | --- |
-| **current** | `# header_lines : N` | the bare column row that is the last header line | flask **event**, **in-situ** (hourly/daily) |
+| **current** | `# header_lines : N` | the bare column row that is the last header line | flask **event**, **in-situ** (hourly) |
 | **legacy** (2020) | `# number_of_header_lines: N` | the `# data_fields:` header line | flask **monthly** |
 
 Supported products are those catalogued in [`docs/format-notes.md`](docs/format-notes.md)
