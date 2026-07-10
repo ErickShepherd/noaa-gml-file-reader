@@ -8,7 +8,7 @@ authors:
     given-names: "Erick Edward"
     email: "dev@erickshepherd.com"
     orcid: "https://orcid.org/0000-0002-4750-6100"
-version: "2.0.2"
+version: "2.0.3"
 date-released: "2026-07-10"
 doi: "10.5281/zenodo.21288799"
 license: MIT
