@@ -1,0 +1,25 @@
+{
+  "upload_type": "software",
+  "title": "noaa-gml-file-reader: Read NOAA GML atmospheric trace-gas ASCII files as pandas DataFrames",
+  "description": "A Python library that reads NOAA Global Monitoring Laboratory (GML/ESRL) atmospheric trace-gas (CO2, CH4) ASCII data files - surface-flask event/monthly and in-situ hourly ccgg products - into tidy pandas DataFrames, auto-detecting the header dialect and parsing the documented missing-value sentinels.",
+  "access_right": "open",
+  "license": "MIT",
+  "keywords": [
+    "NOAA",
+    "GML",
+    "ESRL",
+    "atmospheric science",
+    "greenhouse gases",
+    "CO2",
+    "CH4",
+    "trace gases",
+    "pandas",
+    "Python"
+  ],
+  "creators": [
+    {
+      "name": "Shepherd, Erick Edward",
+      "orcid": "0000-0002-4750-6100"
+    }
+  ]
+}
