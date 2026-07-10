@@ -11,6 +11,6 @@ from noaa_gml_file_reader._reader import read_data, UnrecognizedFormatError
 #  - Versioning system: {major_version}.{minor_version}.{patch}
 #  - Single-sourced here; pyproject.toml reads __version__ from this module.
 __author__  = "Erick Edward Shepherd"
-__version__ = "2.0.1"
+__version__ = "2.0.2"
 
 __all__ = ["read_data", "UnrecognizedFormatError", "__version__"]
