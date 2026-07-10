@@ -23,3 +23,4 @@ ENV/
 .mypy_cache/
 .coverage
 htmlcov/
+docs/_build/

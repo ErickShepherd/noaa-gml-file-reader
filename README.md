@@ -2,8 +2,8 @@
 
 [![CI](https://github.com/ErickShepherd/noaa-gml-file-reader/actions/workflows/ci.yml/badge.svg)](https://github.com/ErickShepherd/noaa-gml-file-reader/actions/workflows/ci.yml)
 ![Python](https://img.shields.io/badge/python-3.10%2B-blue)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21288799.svg)](https://doi.org/10.5281/zenodo.21288799)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/ErickShepherd/noaa-gml-file-reader/blob/main/LICENSE)
+[![DOI](https://img.shields.io/badge/DOI-10.5281%2Fzenodo.21288799-blue)](https://doi.org/10.5281/zenodo.21288799)
 
 Read [NOAA GML](https://gml.noaa.gov) atmospheric trace-gas ASCII data files as
 [`pandas.DataFrame`](https://pandas.pydata.org/) objects — one function,
@@ -80,7 +80,7 @@ format history to read a file:
 | **current** | `# header_lines : N` | the bare column row that is the last header line | flask **event**, **in-situ** (hourly) |
 | **legacy** (2020) | `# number_of_header_lines: N` | the `# data_fields:` header line | flask **monthly** |
 
-Supported products are those catalogued in [`docs/format-notes.md`](docs/format-notes.md)
+Supported products are those catalogued in [`docs/format-notes.md`](https://github.com/ErickShepherd/noaa-gml-file-reader/blob/main/docs/format-notes.md)
 (CO₂/CH₄ surface-flask event + monthly, CO₂ in-situ hourly, at MLO). The header
 grammar is site- and gas-agnostic, so other stations/species in the same product
 families parse the same way.

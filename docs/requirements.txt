@@ -1,0 +1,7 @@
+# Documentation build dependencies (Read the Docs / local `sphinx-build`).
+# The package itself is NOT installed for the docs build; pandas is mocked in
+# conf.py (autodoc_mock_imports), so only Sphinx and the theme/parser are
+# needed here.
+sphinx>=7
+furo
+myst-parser>=2
