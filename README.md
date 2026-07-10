@@ -123,4 +123,4 @@ parses the files; it does not download them.
 
 ## License
 
-MIT — see [LICENSE](LICENSE).
+MIT — see [LICENSE](https://github.com/ErickShepherd/noaa-gml-file-reader/blob/main/LICENSE). Built by [Erick Shepherd](https://erickshepherd.com).
