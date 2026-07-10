@@ -3,6 +3,7 @@
 [![CI](https://github.com/ErickShepherd/noaa-gml-file-reader/actions/workflows/ci.yml/badge.svg)](https://github.com/ErickShepherd/noaa-gml-file-reader/actions/workflows/ci.yml)
 ![Python](https://img.shields.io/badge/python-3.10%2B-blue)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21288799.svg)](https://doi.org/10.5281/zenodo.21288799)
 
 Read [NOAA GML](https://gml.noaa.gov) atmospheric trace-gas ASCII data files as
 [`pandas.DataFrame`](https://pandas.pydata.org/) objects — one function,
