@@ -4,6 +4,14 @@ All notable changes to this project are documented here. The format is based on
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project
 adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.0.2] — 2026-07-10
+
+Citation metadata only — no code changes.
+
+### Added
+- `.zenodo.json` and an author ORCID in `CITATION.cff`, so a Zenodo release
+  archive registers a citable DOI with correct software metadata.
+
 ## [2.0.1] — 2026-07-09
 
 Docs/packaging only — no code changes.
@@ -70,6 +78,7 @@ input now raises instead of returning an empty DataFrame.
 ### Added
 - Initial build developed and released.
 
+[2.0.2]: https://github.com/ErickShepherd/noaa-gml-file-reader/releases/tag/v2.0.2
 [2.0.1]: https://github.com/ErickShepherd/noaa-gml-file-reader/releases/tag/v2.0.1
 [2.0.0]: https://github.com/ErickShepherd/noaa-gml-file-reader/releases/tag/v2.0.0
 [1.0.2]: https://github.com/ErickShepherd/noaa-gml-file-reader/releases/tag/v1.0.2
