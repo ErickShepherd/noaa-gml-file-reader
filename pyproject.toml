@@ -34,9 +34,10 @@ test = ["pytest"]
 
 [project.urls]
 Homepage = "https://github.com/ErickShepherd/noaa-gml-file-reader"
-Documentation = "https://noaa-gml-file-reader.readthedocs.io/en/latest/"
+Documentation = "https://noaa-gml-file-reader.readthedocs.io/en/stable/"
 Source = "https://github.com/ErickShepherd/noaa-gml-file-reader"
-"Bug Tracker" = "https://github.com/ErickShepherd/noaa-gml-file-reader/issues"
+Changelog = "https://github.com/ErickShepherd/noaa-gml-file-reader/releases"
+Issues = "https://github.com/ErickShepherd/noaa-gml-file-reader/issues"
 
 [tool.hatch.version]
 path = "noaa_gml_file_reader/__init__.py"
