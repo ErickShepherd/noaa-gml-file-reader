@@ -3,7 +3,8 @@
 Small, committed samples used by the offline test suite (no network in tests/CI —
 design §Key decisions). Each fixture is the **full header + the first ~20 data rows**
 of a real file retrieved live from `https://gml.noaa.gov/aftp/data/trace_gases/`.
-Header grammar and dialects are documented in [`../../docs/format-notes.md`](../../docs/format-notes.md).
+Header grammar and dialects are summarized in the repository
+[`Supported dialects`](../../README.md#supported-dialects) section.
 
 **Retrieval date:** 2026-07-08 · **base URL:** `https://gml.noaa.gov/aftp/data/trace_gases/`
 
@@ -18,8 +19,7 @@ Header grammar and dialects are documented in [`../../docs/format-notes.md`](../
 ## Notes
 
 - **Both dialects are real** — the legacy `number_of_header_lines` dialect is still served
-  live by the monthly product trees (see `docs/format-notes.md` §Legacy-dialect availability),
-  so no synthetic fixture was needed.
+  live by the monthly product trees, so no synthetic fixture was needed.
 - **Trim rule:** fixtures keep the complete header (so dialect detection and column-name
   extraction exercise the real grammar) plus the first 20 data rows. For the current dialect
   the bare column-name row is the last header line, so it is retained by the header-line trim.

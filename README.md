@@ -80,10 +80,9 @@ format history to read a file:
 | **current** | `# header_lines : N` | the bare column row that is the last header line | flask **event**, **in-situ** (hourly) |
 | **legacy** (2020) | `# number_of_header_lines: N` | the `# data_fields:` header line | flask **monthly** |
 
-Supported products are those catalogued in [`docs/format-notes.md`](https://github.com/ErickShepherd/noaa-gml-file-reader/blob/main/docs/format-notes.md)
-(CO₂/CH₄ surface-flask event + monthly, CO₂ in-situ hourly, at MLO). The header
-grammar is site- and gas-agnostic, so other stations/species in the same product
-families parse the same way.
+The verified product set is CO₂/CH₄ surface-flask event + monthly and CO₂
+in-situ hourly data at MLO. The header grammar is site- and gas-agnostic, so other
+stations/species in the same product families parse the same way.
 
 ## Errors
 
