@@ -8,8 +8,8 @@ authors:
     given-names: "Erick Edward"
     email: "dev@erickshepherd.com"
     orcid: "https://orcid.org/0000-0002-4750-6100"
-version: "2.0.3"
-date-released: "2026-07-10"
+version: "2.0.4"
+date-released: "2026-07-21"
 doi: "10.5281/zenodo.21288799"
 license: MIT
 repository-code: "https://github.com/ErickShepherd/noaa-gml-file-reader"
